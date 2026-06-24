@@ -125,8 +125,12 @@ entertainment held in that room. No skipping, no merging.
    P2 intro, Audio `VOG: [CONFIRM]`, Mics `–`, Lighting L1, Stage and Other
    Notes `STANDBY: VOG`. All other cells `–`.
 
-**Cue numbering:** first cue after pre-show is 101. Every cue increments by 1,
-continuously across all segments in the day. Pre-show rows carry no cue numbers.
+**Cue numbering (per-day prefix):** each day's cues start at that day's hundred
+block: Day 1 begins at 101, Day 2 at 201, Day 3 at 301, Day 4 at 401, and so on
+(first cue after pre-show on Day N = N × 100 + 1). Within a day, every cue
+increments by 1 continuously across all segments. Cue numbers do not carry over
+between days; each sheet restarts at its own hundred block. Pre-show rows carry
+no cue numbers.
 
 **Which segments expand:** a segment gets the full three-cue block below only if
 it is show-called content, decided by this test and nothing else: the agenda
@@ -193,6 +197,49 @@ streaming or recording, as their own unnumbered rows: `START/END STREAMING`,
 GO is implied by the cue row itself. Never write "cue", "take", or freeform call
 language in cells.
 
+## Step 3.5 - Style the output (apply to ROS and Q2Q)
+
+Both files must be readable at a glance, fully text-wrapped, and color-coded so
+`[CONFIRM]` cells jump out as action items. Apply this to both files before saving.
+
+### Palette (hex)
+- Banner / title bar: `1F2A44` navy, white bold text
+- Column header row: `2E3A59` slate, white bold text
+- Zebra striping (alternating data rows): `F4F6FA` over white
+- Grid borders: `D0D5DD` thin on every used cell
+- `[CONFIRM]` cells: `FFD24D` amber fill + `7A4A00` bold text (overrides any other fill)
+- Q2Q segment header band: `3D5A80`, white bold, merged across all columns
+- Q2Q pre-show rows (crew call / walk-in / VOG): `ECEFF4` gray, italic
+- Q2Q session cue (preset P3): `E3EEFC` light blue
+- Q2Q break/meal cue (Stage note `BREAK`): `EEF1F4` neutral
+
+### Global rules
+- Turn OFF gridlines (`showGridLines=False`); the borders carry the structure.
+- Every used cell: thin border, `wrap_text=True`, vertical align `top`.
+- Times, durations, item/cue numbers, and short AV columns center-aligned; titles,
+  locations, notes left-aligned.
+- Do not set fixed row heights on data rows (let Excel auto-grow wrapped text); set
+  banner row to 30, header row to 26 (ROS) / 30 (Q2Q), segment bands to 24.
+- Freeze panes unchanged: `A3` (ROS), `A7` (Q2Q).
+
+### Column widths
+- ROS: Item# 7, Start 10, End 10, Duration 9, Title 36, Speaker 20, Location 20,
+  Setup 16, Screen 1 11, Lighting 11, Audio 11, Notes 48.
+- Q2Q: Cue# 8, Start 10, End 10, Duration 10, Video Preset 12, Center 16,
+  Outboard 16, Downstage 12, DSMs 8, Slide# 8, Video&PPT 20, Audio 16, Mics 20,
+  Lighting 10, Stage 30, Notes 14.
+
+### Emphasis
+- ROS Item # and Q2Q Cue # cells: bold, slate text.
+- ROS banner and Q2Q segment bands: bold, white.
+- `[CONFIRM]` highlight is applied LAST so it always wins over zebra/type fills.
+
+### Apply order per row
+1. Base fill (zebra, or type-based fill for Q2Q).
+2. Borders + wrap + alignment + font.
+3. Bold the number column.
+4. Overwrite any cell containing `[CONFIRM]` with the amber fill + bold amber text.
+
 ## Step 4 - Verify before delivering (mandatory)
 
 Re-open both finished files and check, programmatically, not by eye:
@@ -201,7 +248,8 @@ Re-open both finished files and check, programmatically, not by eye:
    the agenda's item count.
 2. For each Q2Q day, the segment header count equals the number of timed
    program-room items that day in the ROS. A missing segment is a hard failure.
-3. Cue numbers per sheet are continuous integers starting at 101, no gaps,
+3. Cue numbers per sheet are continuous integers starting at that day's hundred
+   block (Day 1 = 101, Day 2 = 201, Day 3 = 301, Day N = N × 100 + 1), no gaps,
    no formulas.
 4. Header rows match the blank templates cell-for-cell.
 
