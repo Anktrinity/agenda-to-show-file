@@ -7,6 +7,22 @@ A Claude skill for event professionals. One input, the event agenda, in any form
 
 The skill fills structure. It never invents structure, and it never invents a fact. Anything the agenda does not state comes out flagged as `[CONFIRM]`, so the file doubles as your production chase list instead of a source of false certainty.
 
+## Try it live (no install)
+
+Play with an interactive version in your browser, no setup, no account:
+
+**https://agenda-to-show-skill.netlify.app**
+
+Run it, switch between days, click an amber `[CONFIRM]` cell to resolve it, fill a whole column at once, and in Build-it-yourself mode change a fact in the source and watch it flow into both the Run of Show and the Cue-to-Cue. It is a visual model of how the skill behaves; the real skill runs inside Claude.
+
+## What is built in
+
+- **Never invents a fact.** Missing facts come back as `[CONFIRM]`, never guessed.
+- **Locked templates.** Columns, naming, and standby language are fixed, so the same agenda always produces the same structure.
+- **Per-day cue numbering.** Each day starts at its own hundred block: Day 1 at 101, Day 2 at 201, Day 3 at 301, and so on.
+- **Built-in styling.** Both files come out color-coded and readable: navy banner, slate headers, zebra rows, and amber `[CONFIRM]` cells that jump out as your action list.
+- **Four mandatory self-checks** before delivery: nothing dropped or duplicated, every session has its cues, cue numbering is clean and per-day, and the format matches the template exactly.
+
 ## What is in this package
 
 ```
@@ -46,4 +62,4 @@ The document changes. The skill pattern does not.
 
 ## Credit
 
-Built by Anca Platon Trifan for the Claude for Events community. Demonstrated with the fully fictional Summit Horizon 2026 conference, built from scrubbed documents.
+Built for the Claude for Events community. Demonstrated with the fully fictional Summit Horizon 2026 conference, built from scrubbed documents.
