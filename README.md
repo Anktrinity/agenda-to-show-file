@@ -62,4 +62,4 @@ The document changes. The skill pattern does not.
 
 ## Credit
 
-Built for the Claude for Events community. Demonstrated with the fully fictional Summit Horizon 2026 conference, built from scrubbed documents.
+Built by **Anca Platon Trifan** for the Claude for Events Boldpush community. Demonstrated with the fully fictional Summit Horizon 2026 conference, built from scrubbed documents.
